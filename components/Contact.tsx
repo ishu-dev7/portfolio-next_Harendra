@@ -17,10 +17,31 @@ export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
   const [loading,   setLoading]   = useState(false);
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setLoading(true);
-    setTimeout(() => { setLoading(false); setSubmitted(true); }, 800);
+    const fd = new FormData(e.currentTarget);
+    const body = {
+      name:    fd.get("name"),
+      email:   fd.get("email"),
+      phone:   fd.get("phone"),
+      company: fd.get("company"),
+      subject: fd.get("subject"),
+      message: fd.get("message"),
+    };
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+      if (!res.ok) throw new Error();
+      setSubmitted(true);
+    } catch {
+      alert("Something went wrong. Please email me directly.");
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -128,25 +149,25 @@ export default function Contact() {
                 <form onSubmit={handleSubmit} className="grid gap-4">
                   <div className="grid grid-cols-2 gap-4">
                     <Field label="Name">
-                      <input type="text" placeholder="Your name" required />
+                      <input name="name" type="text" placeholder="Your name" required />
                     </Field>
                     <Field label="Email">
-                      <input type="email" placeholder="you@company.com" required />
+                      <input name="email" type="email" placeholder="you@company.com" required />
                     </Field>
                   </div>
                   <div className="grid grid-cols-2 gap-4">
                     <Field label="Phone">
-                      <input type="tel" placeholder="Optional" />
+                      <input name="phone" type="tel" placeholder="Optional" />
                     </Field>
                     <Field label="Company">
-                      <input type="text" placeholder="Optional" />
+                      <input name="company" type="text" placeholder="Optional" />
                     </Field>
                   </div>
                   <Field label="Subject">
-                    <input type="text" placeholder="What's this about?" />
+                    <input name="subject" type="text" placeholder="What's this about?" />
                   </Field>
                   <Field label="Message">
-                    <textarea rows={4} placeholder="Tell me about the project or role…" required />
+                    <textarea name="message" rows={4} placeholder="Tell me about the project or role…" required />
                   </Field>
                   <button
                     type="submit"

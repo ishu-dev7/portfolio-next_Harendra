@@ -17,7 +17,7 @@ export const SITE = {
   title:
     "Senior .NET Full Stack Engineer | Backend Specialist | Technical Lead | AI Integration Engineer",
   location: "Indore, Madhya Pradesh, India",
-  email: "harendra@appstean.com",
+  email: "jnvk.harendrasingh1951999@gmail.com",
   phone: "+91 XXXXX XXXXX",
   github: "https://github.com/",
   linkedin: "https://www.linkedin.com/in/harendra-pratap/",
