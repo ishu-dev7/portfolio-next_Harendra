@@ -126,18 +126,19 @@ export async function POST(req: NextRequest) {
 </html>
   `.trim();
 
-  try {
-    await resend.emails.send({
-      from: "Portfolio Contact <onboarding@resend.dev>",
-      to: TO_EMAIL,
-      replyTo: email,
-      subject: `[Portfolio] ${subject || "New message"} — from ${name}`,
-      html,
-    });
+  const { data, error } = await resend.emails.send({
+    from: "Portfolio Contact <onboarding@resend.dev>",
+    to: TO_EMAIL,
+    replyTo: email,
+    subject: `[Portfolio] ${subject || "New message"} — from ${name}`,
+    html,
+  });
 
-    return NextResponse.json({ success: true });
-  } catch (err) {
-    console.error("Resend error:", err);
-    return NextResponse.json({ error: "Failed to send email." }, { status: 500 });
+  if (error) {
+    console.error("Resend error:", JSON.stringify(error));
+    return NextResponse.json({ error: error.message, detail: error }, { status: 500 });
   }
+
+  console.log("Email sent, id:", data?.id);
+  return NextResponse.json({ success: true, id: data?.id });
 }
