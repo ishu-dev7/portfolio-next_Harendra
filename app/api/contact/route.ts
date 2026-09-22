@@ -11,120 +11,149 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Missing required fields." }, { status: 400 });
   }
 
-  const html = `
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>New Contact Message</title>
-</head>
-<body style="margin:0;padding:0;background:#0a0a0f;font-family:'Segoe UI',Arial,sans-serif;">
-  <table width="100%" cellpadding="0" cellspacing="0" style="background:#0a0a0f;padding:40px 0;">
+  const safeMsg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  const initial = name.charAt(0).toUpperCase();
+
+  const infoRows = [
+    phone   ? { label: "📞 Phone",   value: phone   } : null,
+    company ? { label: "🏢 Company", value: company } : null,
+    subject ? { label: "💬 Subject", value: subject } : null,
+  ].filter(Boolean) as { label: string; value: string }[];
+
+  const infoHtml = infoRows.map(row => `
     <tr>
-      <td align="center">
-        <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#13131a;border-radius:16px;overflow:hidden;border:1px solid #1e1e2e;">
-
-          <!-- Header -->
+      <td style="padding:0 0 14px;">
+        <table width="100%" cellpadding="0" cellspacing="0" style="background:#f8f7ff;border-radius:10px;overflow:hidden;">
           <tr>
-            <td style="background:linear-gradient(135deg,#7C5CFF,#3D5AFE);padding:32px 36px;">
-              <p style="margin:0 0 4px;font-size:12px;letter-spacing:3px;color:rgba(255,255,255,0.7);text-transform:uppercase;">Portfolio Contact</p>
-              <h1 style="margin:0;font-size:26px;font-weight:700;color:#ffffff;">New Message Received</h1>
+            <td width="4" style="background:linear-gradient(180deg,#7C5CFF,#3D5AFE);font-size:0;">&nbsp;</td>
+            <td style="padding:12px 16px;">
+              <p style="margin:0 0 2px;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#9ca3af;font-weight:600;">${row.label}</p>
+              <p style="margin:0;font-size:14px;color:#1f2937;font-weight:500;">${row.value}</p>
             </td>
           </tr>
-
-          <!-- Sender Info -->
-          <tr>
-            <td style="padding:32px 36px 0;">
-              <table width="100%" cellpadding="0" cellspacing="0">
-                <tr>
-                  <td width="48" valign="top">
-                    <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#7C5CFF,#22D3EE);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;color:#fff;text-align:center;line-height:48px;">
-                      ${name.charAt(0).toUpperCase()}
-                    </div>
-                  </td>
-                  <td style="padding-left:14px;">
-                    <p style="margin:0;font-size:18px;font-weight:600;color:#ffffff;">${name}</p>
-                    <p style="margin:4px 0 0;font-size:13px;color:#22D3EE;">${email}</p>
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-
-          <!-- Divider -->
-          <tr>
-            <td style="padding:24px 36px 0;">
-              <div style="height:1px;background:linear-gradient(90deg,#7C5CFF44,#22D3EE44,transparent);"></div>
-            </td>
-          </tr>
-
-          <!-- Details Grid -->
-          <tr>
-            <td style="padding:24px 36px 0;">
-              <table width="100%" cellpadding="0" cellspacing="0">
-                <tr>
-                  ${phone ? `
-                  <td width="50%" valign="top" style="padding-right:12px;padding-bottom:16px;">
-                    <p style="margin:0 0 4px;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#6b7280;">Phone</p>
-                    <p style="margin:0;font-size:14px;color:#e5e7eb;">${phone}</p>
-                  </td>` : ""}
-                  ${company ? `
-                  <td width="50%" valign="top" style="padding-bottom:16px;">
-                    <p style="margin:0 0 4px;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#6b7280;">Company</p>
-                    <p style="margin:0;font-size:14px;color:#e5e7eb;">${company}</p>
-                  </td>` : ""}
-                </tr>
-              </table>
-            </td>
-          </tr>
-
-          <!-- Subject -->
-          ${subject ? `
-          <tr>
-            <td style="padding:0 36px 20px;">
-              <p style="margin:0 0 4px;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#6b7280;">Subject</p>
-              <p style="margin:0;font-size:15px;font-weight:600;color:#ffffff;">${subject}</p>
-            </td>
-          </tr>` : ""}
-
-          <!-- Message -->
-          <tr>
-            <td style="padding:0 36px 32px;">
-              <p style="margin:0 0 10px;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#6b7280;">Message</p>
-              <div style="background:#0d0d16;border:1px solid #1e1e2e;border-left:3px solid #7C5CFF;border-radius:8px;padding:18px 20px;">
-                <p style="margin:0;font-size:15px;line-height:1.7;color:#d1d5db;white-space:pre-wrap;">${message.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</p>
-              </div>
-            </td>
-          </tr>
-
-          <!-- CTA -->
-          <tr>
-            <td style="padding:0 36px 32px;">
-              <a href="mailto:${email}?subject=Re: ${subject || "Your message"}"
-                 style="display:inline-block;background:linear-gradient(135deg,#7C5CFF,#3D5AFE);color:#ffffff;text-decoration:none;font-size:14px;font-weight:600;padding:12px 28px;border-radius:8px;">
-                Reply to ${name}
-              </a>
-            </td>
-          </tr>
-
-          <!-- Footer -->
-          <tr>
-            <td style="background:#0d0d16;border-top:1px solid #1e1e2e;padding:20px 36px;">
-              <p style="margin:0;font-size:12px;color:#4b5563;text-align:center;">
-                This message was sent via your portfolio contact form at
-                <span style="color:#7C5CFF;">portfolio-harendra.vercel.app</span>
-              </p>
-            </td>
-          </tr>
-
         </table>
       </td>
-    </tr>
+    </tr>`).join("");
+
+  const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>New Contact Message</title>
+</head>
+<body style="margin:0;padding:0;background:#f3f4f6;font-family:'Segoe UI',Helvetica,Arial,sans-serif;">
+
+  <!-- Outer wrapper -->
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#f3f4f6;padding:40px 16px;">
+    <tr><td align="center">
+
+      <!-- Card -->
+      <table width="580" cellpadding="0" cellspacing="0" style="max-width:580px;width:100%;border-radius:20px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.10);">
+
+        <!-- ── HEADER ── -->
+        <tr>
+          <td style="background:linear-gradient(135deg,#7C5CFF 0%,#3D5AFE 60%,#22D3EE 100%);padding:36px 40px 32px;">
+            <table width="100%" cellpadding="0" cellspacing="0">
+              <tr>
+                <td>
+                  <p style="margin:0 0 6px;font-size:11px;letter-spacing:3px;color:rgba(255,255,255,0.75);text-transform:uppercase;font-weight:600;">Portfolio Contact</p>
+                  <h1 style="margin:0;font-size:28px;font-weight:700;color:#ffffff;line-height:1.2;">New Message Received</h1>
+                </td>
+                <td align="right" valign="top">
+                  <div style="width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,0.2);border:2px solid rgba(255,255,255,0.4);text-align:center;line-height:56px;font-size:24px;font-weight:700;color:#ffffff;">
+                    ${initial}
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- ── SENDER BANNER ── -->
+        <tr>
+          <td style="background:#1e1b4b;padding:18px 40px;">
+            <table width="100%" cellpadding="0" cellspacing="0">
+              <tr>
+                <td>
+                  <p style="margin:0;font-size:17px;font-weight:600;color:#ffffff;">${name}</p>
+                  <p style="margin:3px 0 0;font-size:13px;color:#a5b4fc;">${email}</p>
+                </td>
+                <td align="right">
+                  <span style="display:inline-block;background:rgba(124,92,255,0.25);border:1px solid rgba(124,92,255,0.4);border-radius:20px;padding:4px 12px;font-size:11px;color:#c4b5fd;font-weight:600;letter-spacing:1px;">NEW MESSAGE</span>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- ── BODY ── -->
+        <tr>
+          <td style="background:#ffffff;padding:32px 40px 8px;">
+
+            <!-- Info rows -->
+            ${infoRows.length > 0 ? `
+            <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:8px;">
+              ${infoHtml}
+            </table>` : ""}
+
+            <!-- Message label -->
+            <p style="margin:0 0 10px;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#9ca3af;font-weight:600;">✉️ Message</p>
+
+            <!-- Message box -->
+            <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:28px;">
+              <tr>
+                <td width="4" style="background:linear-gradient(180deg,#7C5CFF,#22D3EE);border-radius:4px 0 0 4px;font-size:0;">&nbsp;</td>
+                <td style="background:#f8f7ff;border-radius:0 10px 10px 0;padding:18px 20px;border:1px solid #ede9fe;border-left:none;">
+                  <p style="margin:0;font-size:15px;line-height:1.8;color:#374151;white-space:pre-wrap;">${safeMsg}</p>
+                </td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+
+        <!-- ── CTA ── -->
+        <tr>
+          <td style="background:#ffffff;padding:0 40px 36px;">
+            <table cellpadding="0" cellspacing="0">
+              <tr>
+                <td style="border-radius:10px;background:linear-gradient(135deg,#7C5CFF,#3D5AFE);box-shadow:0 4px 20px rgba(124,92,255,0.4);">
+                  <a href="mailto:${email}?subject=Re%3A ${encodeURIComponent(subject || "Your portfolio message")}"
+                     style="display:inline-block;padding:13px 32px;font-size:14px;font-weight:600;color:#ffffff;text-decoration:none;letter-spacing:0.3px;">
+                    ↩ Reply to ${name}
+                  </a>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- ── DIVIDER ── -->
+        <tr>
+          <td style="background:#ffffff;padding:0 40px;">
+            <div style="height:1px;background:linear-gradient(90deg,#7C5CFF33,#22D3EE33,transparent);"></div>
+          </td>
+        </tr>
+
+        <!-- ── FOOTER ── -->
+        <tr>
+          <td style="background:#ffffff;border-radius:0 0 20px 20px;padding:20px 40px 28px;">
+            <p style="margin:0;font-size:12px;color:#9ca3af;text-align:center;line-height:1.6;">
+              Sent via the contact form on
+              <a href="https://portfolio-harendra.vercel.app" style="color:#7C5CFF;text-decoration:none;font-weight:500;">portfolio-harendra.vercel.app</a>
+              <br/>Reply directly to this email or click the button above.
+            </p>
+          </td>
+        </tr>
+
+      </table>
+      <!-- /Card -->
+
+    </td></tr>
   </table>
 </body>
-</html>
-  `.trim();
+</html>`;
 
   const { data, error } = await resend.emails.send({
     from: "Portfolio Contact <onboarding@resend.dev>",
