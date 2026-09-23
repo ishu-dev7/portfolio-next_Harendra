@@ -35,7 +35,7 @@ export default function Statistics() {
                     suffix="+"
                     className="font-display text-3xl font-bold grad-text md:text-4xl"
                   />
-                  <div className="mt-2 max-w-[110px] text-xs leading-snug text-muted">{s.label}</div>
+                  <div className="mt-2 max-w-[110px] text-xs font-medium leading-snug text-text/70">{s.label}</div>
                 </div>
               ))}
             </div>

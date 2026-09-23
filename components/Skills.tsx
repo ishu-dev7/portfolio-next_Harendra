@@ -2,6 +2,7 @@
 
 import { Server, Monitor, Database, Cloud, Brain, Wrench } from "lucide-react";
 import Reveal from "./Reveal";
+import TechBackground from "./TechBackground";
 import { SKILLS } from "@/constants/data";
 
 const CATEGORY_ICONS: Record<string, React.ReactNode> = {
@@ -25,9 +26,9 @@ const CATEGORY_COLORS: Record<string, { card: string; chip: string; icon: string
 export default function Skills() {
   return (
     <section id="skills" className="relative overflow-hidden py-28">
+      <TechBackground connectDist={120} />
       <div className="pointer-events-none absolute -right-40 top-10 h-80 w-80 rounded-full bg-brand-purple/8 blur-[110px]" />
       <div className="pointer-events-none absolute -left-40 bottom-10 h-80 w-80 rounded-full bg-brand-cyan/6 blur-[110px]" />
-      <div className="pointer-events-none absolute inset-0 dot-grid opacity-20" />
 
       <div className="relative mx-auto max-w-wrap px-7">
         <Reveal className="mb-16 max-w-xl">

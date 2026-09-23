@@ -47,7 +47,7 @@ export default function Services() {
                   </div>
 
                   <h4 className="mb-2.5 text-base font-semibold">{s.title}</h4>
-                  <p className="text-sm leading-relaxed text-muted">{s.description}</p>
+                  <p className="text-sm leading-relaxed text-text/75">{s.description}</p>
                 </div>
               </Reveal>
             );

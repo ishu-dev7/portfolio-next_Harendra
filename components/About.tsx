@@ -1,15 +1,25 @@
 import Reveal from "./Reveal";
 import Counter from "./Counter";
 import AboutCarousel from "./AboutCarousel";
+import TechBackground from "./TechBackground";
 import { ABOUT_COUNTERS, ABOUT_HIGHLIGHTS } from "@/constants/data";
+
+const COUNTER_ACCENTS = [
+  "from-brand-purple to-brand-blue",
+  "from-brand-blue to-indigo-400",
+  "from-brand-cyan to-brand-blue",
+  "from-sky-400 to-brand-cyan",
+  "from-emerald-400 to-brand-cyan",
+  "from-brand-purple to-brand-cyan",
+];
 
 export default function About() {
   return (
     <section id="about" className="relative overflow-hidden py-28">
-      {/* Dynamic background graphics */}
+      {/* Dynamic background */}
+      <TechBackground connectDist={130} />
       <div className="pointer-events-none absolute -left-32 top-20 h-72 w-72 rounded-full bg-brand-purple/10 blur-[100px]" />
       <div className="pointer-events-none absolute -right-32 bottom-10 h-72 w-72 rounded-full bg-brand-cyan/8 blur-[100px]" />
-      <div className="pointer-events-none absolute inset-0 dot-grid opacity-25" />
 
       <div className="relative mx-auto max-w-wrap px-7">
         <div className="grid grid-cols-1 gap-14 md:grid-cols-[1fr_1.3fr]">
@@ -27,7 +37,7 @@ export default function About() {
               A backend specialist who thinks in systems, not just endpoints.
             </h2>
 
-            <div className="space-y-4 text-base leading-relaxed text-muted">
+            <div className="space-y-4 text-base leading-relaxed text-text/75">
               <p>
                 I&apos;m a software engineer specializing in Microsoft
                 technologies, with around{" "}
@@ -54,23 +64,27 @@ export default function About() {
                   <span className="mt-0.5 h-5 w-5 shrink-0 rounded-md bg-brand-cyan/10 text-center font-mono text-[11px] leading-5 text-brand-cyan border border-brand-cyan/20">
                     ✓
                   </span>
-                  <span className="text-muted">{item}</span>
+                  <span className="text-text/85">{item}</span>
                 </li>
               ))}
             </ul>
 
             {/* Counters */}
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-              {ABOUT_COUNTERS.map((c) => (
+              {ABOUT_COUNTERS.map((c, idx) => (
                 <div
                   key={c.label}
-                  className="group rounded-xl border border-border bg-surface px-4 py-4 transition-all duration-200 hover:border-brand-purple/40 hover:bg-surface2"
+                  className="group relative overflow-hidden rounded-xl border border-border bg-surface transition-all duration-200 hover:border-brand-purple/40 hover:-translate-y-0.5 hover:shadow-[0_6px_24px_-8px_rgba(124,92,255,0.25)]"
                 >
-                  <Counter
-                    target={c.target}
-                    className="grad-text font-display text-2xl font-bold"
-                  />
-                  <div className="mt-1 text-xs leading-snug text-muted">{c.label}</div>
+                  <div className={`h-[3px] w-full bg-gradient-to-r ${COUNTER_ACCENTS[idx % COUNTER_ACCENTS.length]}`} />
+                  <div className="px-4 py-4">
+                    <Counter
+                      target={c.target}
+                      suffix="+"
+                      className="grad-text font-display text-2xl font-bold"
+                    />
+                    <div className="mt-1 text-xs font-medium leading-snug text-text/65">{c.label}</div>
+                  </div>
                 </div>
               ))}
             </div>

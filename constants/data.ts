@@ -36,12 +36,12 @@ export const ABOUT_HIGHLIGHTS = [
 ];
 
 export const ABOUT_COUNTERS: CounterItem[] = [
-  { target: 3, label: "Years Experience" },
-  { target: 20, label: "Enterprise Modules" },
-  { target: 50, label: "REST APIs Built" },
-  { target: 10, label: "SQL Optimizations" },
-  { target: 2, label: "Live Projects Managed" },
-  { target: 4, label: "AI Integrations Delivered" },
+  { target: 3,   label: "Years Experience" },
+  { target: 20,  label: "Enterprise Modules" },
+  { target: 500, label: "REST APIs Built" },
+  { target: 100, label: "SQL Optimizations" },
+  { target: 4,   label: "Live Projects Managed" },
+  { target: 4,   label: "AI Integrations Delivered" },
 ];
 
 export const SKILLS: SkillCategory[] = [
@@ -258,7 +258,7 @@ export const JOURNEY: JourneyStep[] = [
 export const CERTIFICATIONS: CertificationItem[] = [
   { icon: "☕", name: "Java Full Stack", status: "Completed" },
   { icon: "⚡", name: "AI Implementation Workshop", status: "Completed" },
-  { icon: "☁", name: "Azure AZ-204", status: "In Progress" },
+  { icon: "🤖", name: "Azure AI-200", status: "In Progress" },
   { icon: "#", name: ".NET Core", status: "Planned" },
   { icon: "▤", name: "SQL Server", status: "Planned" },
   { icon: "✺", name: "Applied AI", status: "Planned" },

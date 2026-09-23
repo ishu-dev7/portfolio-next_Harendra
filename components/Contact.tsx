@@ -112,12 +112,12 @@ export default function Contact() {
                     <span className="h-2 w-2 rounded-full bg-emerald-400 animate-glow-pulse" />
                     <span className="text-sm font-semibold text-emerald-400">Available for work</span>
                   </div>
-                  <p className="mb-3 text-xs leading-relaxed text-muted">
+                  <p className="mb-3 text-xs leading-relaxed text-text/75">
                     Currently open to full-time roles, freelance projects, and technical
                     consultation engagements. Based in Indore, India — open to remote
                     and hybrid opportunities.
                   </p>
-                  <div className="flex items-center gap-1.5 font-mono text-[11px] text-muted">
+                  <div className="flex items-center gap-1.5 font-mono text-[11px] text-text/60">
                     <Clock size={11} />
                     Response time: within 24 hours
                   </div>

@@ -87,7 +87,7 @@ export default function Hero() {
           </div>
 
           {/* Bio */}
-          <p className="mt-4 max-w-[520px] text-[15px] leading-relaxed text-muted">
+          <p className="mt-4 max-w-[520px] text-[15px] leading-relaxed text-text/75">
             Building enterprise Sales Force Automation platforms used by pharmaceutical
             sales teams. Leading backend architecture, SQL optimization, AI-powered
             reporting, SAP integrations, and production deployments at{" "}
@@ -113,7 +113,7 @@ export default function Hero() {
                 <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-400/15 border border-emerald-400/30">
                   <Check size={10} className="text-emerald-400" />
                 </div>
-                <span className="text-sm text-text/75">{ach}</span>
+                <span className="text-sm text-text/85">{ach}</span>
               </div>
             ))}
           </div>

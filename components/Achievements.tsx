@@ -1,5 +1,6 @@
 import { Trophy, Medal, ThumbsUp, Cpu, Layers, Zap, Rocket, Users, Link2 } from "lucide-react";
 import Reveal from "./Reveal";
+import TechBackground from "./TechBackground";
 import { ACHIEVEMENTS } from "@/constants/data";
 
 const ICONS = [
@@ -18,6 +19,7 @@ export default function Achievements() {
   return (
     <section id="achievements" className="relative py-28 overflow-hidden">
       {/* Background graphics */}
+      <TechBackground connectDist={110} />
       <div className="pointer-events-none absolute -right-40 top-20 h-80 w-80 rounded-full bg-yellow-400/5 blur-[100px]" />
       <div className="pointer-events-none absolute -left-40 bottom-20 h-80 w-80 rounded-full bg-brand-purple/8 blur-[100px]" />
 
@@ -64,7 +66,7 @@ export default function Achievements() {
                   }`}>
                     {a.title}
                   </h4>
-                  <p className="text-xs leading-relaxed text-muted">{a.description}</p>
+                  <p className="text-xs leading-relaxed text-text/75">{a.description}</p>
 
                   {/* Award badges for top-2 */}
                   {i === 0 && (

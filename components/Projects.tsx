@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import Reveal from "./Reveal";
+import TechBackground from "./TechBackground";
 import { PROJECTS } from "@/constants/data";
 import { ProjectCategory } from "@/types";
 
@@ -34,8 +35,8 @@ const CATEGORY_META: Record<string, { bar: string; badge: string; glow: string }
 function MetaRow({ label, value }: { label: string; value: string }) {
   return (
     <div className="grid grid-cols-[90px_1fr] gap-2 py-2.5 border-b border-border/50 last:border-0">
-      <span className="text-xs font-semibold text-muted">{label}</span>
-      <span className="text-xs text-text/80 leading-relaxed">{value}</span>
+      <span className="text-xs font-semibold text-brand-cyan/70">{label}</span>
+      <span className="text-xs text-text/85 leading-relaxed">{value}</span>
     </div>
   );
 }
@@ -67,7 +68,7 @@ function ProjectCard({ project, delay }: { project: typeof PROJECTS[0]; delay: n
           </div>
 
           {/* Description */}
-          <p className="mb-4 text-sm leading-relaxed text-muted">{project.description}</p>
+          <p className="mb-4 text-sm leading-relaxed text-text/75">{project.description}</p>
 
           {/* Meta table */}
           <div className="mb-4 rounded-xl border border-border/50 bg-surface2 px-4">
@@ -96,7 +97,7 @@ function ProjectCard({ project, delay }: { project: typeof PROJECTS[0]; delay: n
           >
             <ul className="mb-3 flex flex-col gap-2 pl-1">
               {project.highlights.map((h) => (
-                <li key={h} className="flex items-start gap-2.5 text-xs text-text/75 leading-relaxed">
+                <li key={h} className="flex items-start gap-2.5 text-xs text-text/85 leading-relaxed">
                   <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-purple/60" />
                   {h}
                 </li>
@@ -120,6 +121,7 @@ export default function Projects() {
 
   return (
     <section id="projects" className="relative overflow-hidden py-28">
+      <TechBackground connectDist={125} />
       <div className="pointer-events-none absolute left-0 top-1/3 h-96 w-96 rounded-full bg-brand-blue/6 blur-[120px]" />
       <div className="pointer-events-none absolute right-0 bottom-1/3 h-96 w-96 rounded-full bg-brand-purple/6 blur-[120px]" />
 
