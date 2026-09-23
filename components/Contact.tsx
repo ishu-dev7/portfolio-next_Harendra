@@ -2,15 +2,14 @@
 
 import { useState } from "react";
 import {
-  CheckCircle, Github, Linkedin, Mail, MapPin, Phone, Clock, Send,
+  CheckCircle, Github, Linkedin, Mail, MapPin, Clock, Send,
 } from "lucide-react";
 import Reveal from "./Reveal";
 import { SITE } from "@/constants/data";
 
 const CONTACT_ITEMS = [
-  { Icon: Mail,    label: "Email",    value: SITE.email    },
-  { Icon: Phone,   label: "Phone",    value: SITE.phone    },
-  { Icon: MapPin,  label: "Location", value: SITE.location },
+  { Icon: Mail,   label: "Email",    value: SITE.email    },
+  { Icon: MapPin, label: "Location", value: SITE.location },
 ];
 
 export default function Contact() {

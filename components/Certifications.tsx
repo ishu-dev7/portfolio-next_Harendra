@@ -33,7 +33,7 @@ function StatusBadge({ status }: { status: string }) {
   return (
     <div className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-border bg-surface2 px-2.5 py-1 font-mono text-[10px] text-muted">
       <Clock size={9} />
-      Coming Soon
+      Planned
     </div>
   );
 }
@@ -57,7 +57,7 @@ export default function Certifications() {
           </p>
         </Reveal>
 
-        <Reveal className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7">
+        <Reveal className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
           {CERTIFICATIONS.map((cert, i) => {
             const Icon  = CERT_ICONS[i % CERT_ICONS.length];
             const color = CERT_COLORS[i % CERT_COLORS.length];

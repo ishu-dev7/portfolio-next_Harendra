@@ -10,7 +10,6 @@ import Expertise from "@/components/Expertise";
 import Journey from "@/components/Journey";
 import Certifications from "@/components/Certifications";
 import Resume from "@/components/Resume";
-import CodingProfiles from "@/components/CodingProfiles";
 import Testimonials from "@/components/Testimonials";
 import Services from "@/components/Services";
 import Statistics from "@/components/Statistics";
@@ -33,7 +32,6 @@ export default function Home() {
         <Journey />
         <Certifications />
         <Resume />
-        <CodingProfiles />
         <Testimonials />
         <Services />
         <Statistics />

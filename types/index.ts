@@ -20,9 +20,14 @@ export type ProjectCategory = "enterprise" | "ai" | "tooling";
 export interface ProjectItem {
   title: string;
   tag: string;
+  categoryLabel: string;
   category: ProjectCategory;
   description: string;
+  role: string;
+  tech: string;
   features: string[];
+  contribution: string;
+  highlights: string[];
   stack: string;
 }
 

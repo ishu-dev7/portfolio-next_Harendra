@@ -19,13 +19,13 @@ export default function Services() {
       <div className="mx-auto max-w-wrap px-7">
         <Reveal className="mb-16 max-w-xl">
           <div className="mb-3.5 flex items-center font-mono text-sm text-brand-cyan section-label">
-            SERVICES
+            WHAT I BRING
           </div>
           <h2 className="font-display text-3xl font-semibold md:text-4xl">
-            How I can help your team.
+            How I contribute to a team.
           </h2>
           <p className="mt-3.5 text-base text-muted">
-            From API design to AI integration — I bring end-to-end technical ownership.
+            End-to-end technical ownership — from API design and SQL performance to AI integration and mentoring.
           </p>
         </Reveal>
 

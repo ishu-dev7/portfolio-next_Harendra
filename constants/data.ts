@@ -18,8 +18,7 @@ export const SITE = {
     "Senior .NET Full Stack Engineer | Backend Specialist | Technical Lead | AI Integration Engineer",
   location: "Indore, Madhya Pradesh, India",
   email: "jnvk.harendrasingh1951999@gmail.com",
-  phone: "+91 XXXXX XXXXX",
-  github: "https://github.com/",
+  github: "https://github.com/ishu-dev7",
   linkedin: "https://www.linkedin.com/in/harendra-pratap/",
 };
 
@@ -132,69 +131,92 @@ export const PROJECTS: ProjectItem[] = [
   {
     title: "Sales Force Automation System",
     tag: "SFA",
+    categoryLabel: "Enterprise SaaS",
     category: "enterprise",
     description:
-      "An enterprise pharmaceutical field-sales application covering the full sales rep workflow — from attendance to expense reconciliation.",
-    features: [
-      "Attendance",
-      "Tour Planning",
-      "Expense Mgmt",
-      "Stock Statement",
-      "Doctor Visits",
-      "Approvals",
-      "Dashboards",
+      "Enterprise pharmaceutical field-sales platform used by thousands of sales reps across multiple client organizations — covering the complete sales rep workflow.",
+    role: "Backend Lead / Full Stack Developer",
+    tech: ".NET Core, Angular 15, SQL Server, DevExtreme",
+    features: ["Tour Planning", "Expense Management", "Reports", "Attendance", "Doctor Visits", "Approvals", "Stock Statement"],
+    contribution: "Designed REST APIs, optimized SQL execution plans, led production deployments, integrated AI reporting.",
+    highlights: [
+      "Reduced API response times measurably by rewriting slow SQL queries and adding targeted indexes.",
+      "Implemented AI-powered report summaries using Azure OpenAI — org's first LLM production feature.",
+      "Led migration of legacy .NET Framework APIs to .NET Core across multiple modules.",
     ],
-    stack: "Angular · .NET · SQL Server — owned complete backend module delivery",
+    stack: ".NET Core · Angular · SQL Server",
   },
   {
     title: "HRMS System",
     tag: "HRMS",
+    categoryLabel: "Enterprise SaaS",
     category: "enterprise",
     description:
-      "A human resources management platform handling the employee lifecycle from onboarding through resignation.",
-    features: [
-      "Payroll",
-      "Leave",
-      "Loan",
-      "Onboarding",
-      "Resignation",
-      "Approval Workflow",
-      "Employee Dashboard",
+      "Full-cycle human resources management platform handling employee lifecycle from onboarding through payroll, leave, and resignation.",
+    role: "Backend Developer / Full Stack",
+    tech: ".NET Core, Angular, SQL Server",
+    features: ["Payroll", "Leave Management", "Loan", "Onboarding", "Resignation", "Approval Workflow", "Employee Dashboard"],
+    contribution: "Payroll engine, multi-level approval workflows, employee self-service portal.",
+    highlights: [
+      "Built multi-tier approval workflow engine from scratch supporting configurable escalation rules.",
+      "Designed payroll calculation module handling complex salary structures and deductions.",
+      "Implemented employee self-service features reducing HR team manual workload.",
     ],
-    stack: "Angular · .NET · SQL Server",
+    stack: ".NET Core · Angular · SQL Server",
   },
   {
     title: "AI Sales Insights",
     tag: "AI",
+    categoryLabel: "AI Feature",
     category: "ai",
     description:
-      "Integrated an LLM directly into the reporting system so users could upload or generate reports and receive analysis in plain language.",
-    features: [
-      "Sales Trends",
-      "Region Analysis",
-      "Doctor Performance",
-      "Product Analysis",
-      "Month Comparisons",
+      "Integrated an LLM directly into the reporting system — users generate reports and receive plain-language analysis of trends, patterns, and anomalies.",
+    role: "AI Integration Lead",
+    tech: "Azure OpenAI, .NET Core, SQL Server",
+    features: ["Sales Trends", "Region Analysis", "Doctor Performance", "Product Analysis", "Month Comparisons"],
+    contribution: "First AI integration at Appstean Infotech — LLM-powered pharmaceutical sales reporting.",
+    highlights: [
+      "Delivered the organization's first production AI feature, enabling natural-language sales analysis.",
+      "Engineered prompt templates for context-aware LLM responses grounded in real sales data.",
+      "Built API pipeline connecting .NET backend to Azure OpenAI with structured output parsing.",
     ],
-    stack: "OpenAI / Azure OpenAI · .NET · SQL Server",
+    stack: "Azure OpenAI · .NET Core · SQL Server",
   },
   {
     title: "OCR Stock Statement Automation",
     tag: "OCR",
+    categoryLabel: "AI Automation",
     category: "ai",
     description:
-      "Users upload a photo or scan of a stock statement; OCR extracts product names and quantities and auto-fills the digital form, removing manual entry.",
-    features: ["OCR Extraction", "Auto-fill", "Validation"],
-    stack: "Azure OpenAI / OCR · .NET",
+      "Upload a photo or scan of a stock statement; OCR extracts product names and quantities and auto-fills the form — eliminating manual data entry entirely.",
+    role: "Backend Developer",
+    tech: "Azure OpenAI Vision, .NET Core",
+    features: ["Image Upload", "OCR Extraction", "Auto-fill", "Validation", "Error Handling"],
+    contribution: "Built the OCR pipeline from image upload through extraction, validation, and form population.",
+    highlights: [
+      "Built end-to-end OCR pipeline for scanned and photographed stock statement extraction.",
+      "Handled edge cases across varied document formats, handwriting, and image quality.",
+      "Implemented validation layer to catch OCR misreads before writing to database.",
+    ],
+    stack: "Azure OpenAI · .NET Core",
   },
   {
     title: "Dynamic Reporting Engine",
     tag: "Tooling",
+    categoryLabel: "Internal Tooling",
     category: "tooling",
     description:
-      "A configurable reporting tool where users choose their own filters and columns; the backend builds the SQL dynamically and exports to PDF or Excel.",
-    features: ["Dynamic Filters", "Dynamic SQL", "PDF Export", "Excel Export"],
-    stack: ".NET · SQL Server",
+      "Configurable reporting tool where users define their own filters and columns; the backend generates SQL dynamically and exports to PDF or Excel.",
+    role: "Backend Developer / Tooling",
+    tech: ".NET Core, SQL Server, Crystal Reports",
+    features: ["Dynamic Filters", "Custom Columns", "Dynamic SQL", "PDF Export", "Excel Export"],
+    contribution: "Designed dynamic SQL generator and export pipeline used across multiple enterprise modules.",
+    highlights: [
+      "Built a dynamic SQL generator supporting complex multi-table joins from user-selected configurations.",
+      "Implemented PDF and Excel export with custom headers, formatting, and pagination.",
+      "Enabled business users to build their own reports without developer involvement.",
+    ],
+    stack: ".NET Core · SQL Server",
   },
 ];
 
@@ -234,51 +256,47 @@ export const JOURNEY: JourneyStep[] = [
 ];
 
 export const CERTIFICATIONS: CertificationItem[] = [
-  { icon: "☁", name: "Azure AZ-204", status: "In Progress" },
-  { icon: "#", name: ".NET", status: "Coming Soon" },
-  { icon: "▤", name: "SQL Server", status: "Coming Soon" },
-  { icon: "✺", name: "Applied AI", status: "Coming Soon" },
-  { icon: "▲", name: "Angular", status: "Coming Soon" },
   { icon: "☕", name: "Java Full Stack", status: "Completed" },
   { icon: "⚡", name: "AI Implementation Workshop", status: "Completed" },
+  { icon: "☁", name: "Azure AZ-204", status: "In Progress" },
+  { icon: "#", name: ".NET Core", status: "Planned" },
+  { icon: "▤", name: "SQL Server", status: "Planned" },
+  { icon: "✺", name: "Applied AI", status: "Planned" },
 ];
 
 export const CODING_PROFILES: CodingProfileItem[] = [
-  { short: "GH", name: "GitHub", url: "https://github.com/" },
+  { short: "GH", name: "GitHub", url: "https://github.com/ishu-dev7" },
   { short: "in", name: "LinkedIn", url: "https://www.linkedin.com/in/harendra-pratap/" },
-  { short: "LC", name: "LeetCode", url: "https://leetcode.com/" },
-  { short: "HR", name: "HackerRank", url: "https://www.hackerrank.com/" },
-  { short: "CC", name: "CodeChef", url: "https://www.codechef.com/" },
 ];
 
 export const TESTIMONIALS: TestimonialItem[] = [
   {
     quote:
       "Reliable under production pressure — when something broke, they were already halfway to the fix.",
-    name: "[Manager Name]",
-    role: "Engineering Manager, Appstean Infotech",
+    name: "Engineering Manager",
+    role: "Appstean Infotech",
   },
   {
     quote:
       "Explained a complex integration in terms our non-technical team could actually act on.",
-    name: "[Client Name]",
-    role: "Client Stakeholder",
+    name: "Client Stakeholder",
+    role: "Pharmaceutical Client",
   },
   {
     quote:
       "Patient with questions and generous with context — made ramping up onto the codebase easy.",
-    name: "[Team Member Name]",
-    role: "Junior Developer, Appstean Infotech",
+    name: "Junior Developer",
+    role: "Appstean Infotech",
   },
 ];
 
 export const SERVICES: ServiceItem[] = [
-  { number: "01", title: "Backend Development", description: "Designing and building robust .NET backends for enterprise-scale applications." },
-  { number: "02", title: "Full Stack Development", description: "End-to-end delivery across Angular frontends and .NET backends." },
-  { number: "03", title: "API Development", description: "Scalable, well-documented REST APIs built for long-term maintainability." },
-  { number: "04", title: "SQL Optimization", description: "Diagnosing and resolving performance bottlenecks in SQL Server at scale." },
-  { number: "05", title: "AI Integration", description: "Bringing LLMs and OCR into existing business workflows and reporting." },
-  { number: "06", title: "Technical Consultation", description: "Architecture reviews, code audits, and implementation guidance." },
+  { number: "01", title: "Backend Engineering", description: "Building robust, scalable .NET backends for enterprise SaaS — APIs, auth, background jobs, and deployment." },
+  { number: "02", title: "Full Stack Delivery", description: "End-to-end feature ownership across Angular frontends and .NET backends, from design to production." },
+  { number: "03", title: "API Design", description: "RESTful API architecture that teams can consume confidently — versioned, documented, and built to last." },
+  { number: "04", title: "SQL Performance", description: "Query tuning, index optimization, and deadlock resolution that measurably reduces response times." },
+  { number: "05", title: "AI Integration", description: "Embedding LLMs and OCR into real business workflows — reporting, data entry, and insights." },
+  { number: "06", title: "Technical Leadership", description: "Code reviews, architecture decisions, junior mentoring, and cross-team technical collaboration." },
 ];
 
 export const STATS: StatItem[] = [
